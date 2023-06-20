@@ -14,9 +14,9 @@ typedef struct s_fd
 	int output;
 } t_fd;
 
-int						ft_execute_builtins(t_cmdexe *cmd, char **args, t_env *env);
+int						ft_execute_builtins(t_cmdexe *cmd, char **args, t_env **env);
 void					ft_freecdexe(t_cmdexe *head);
-void					ft_execute_cmd(t_cmdexe *cmd, t_env *env);
+void					ft_execute_cmd(t_cmdexe *cmd, t_env **env);
 int						ft_execute(t_cmdexe *cmd,t_fd fd , t_env *env, t_lstpipe *pip);
 int						wifsignaled(int status);
 int						wtermsig(int status);

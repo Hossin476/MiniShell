@@ -1,7 +1,7 @@
 
 #include "../include/minishell.h"
 
-int ft_execute_builtins(t_cmdexe *cmd,char **args, t_env *env)
+int ft_execute_builtins(t_cmdexe *cmd,char **args, t_env **env)
 {
     if (args == NULL || args[0] == NULL)
         return 1;
@@ -9,19 +9,19 @@ int ft_execute_builtins(t_cmdexe *cmd,char **args, t_env *env)
         return(printf("%s",cmd->error_log),globs.g_exit_status = 1,1);
     dup2(cmd->output,1);
     if (ft_compare(args[0], "echo") == 0)
-            return ft_echo_command(args, env);
+            return ft_echo_command(args, *env);
     else if (ft_compare(args[0], "pwd") == 0)
-        return ft_pwd_command(args, env);
+        return ft_pwd_command(args, *env);
     else if (ft_compare(args[0], "cd") == 0)
-        return ft_cd_command(args, env);
+        return ft_cd_command(args, *env);
     else if (ft_compare(args[0], "unset") == 0)
             ft_unset_command(args, env);
     else if (ft_compare(args[0], "export") == 0)
         return ft_export_command(args, env);
     else if (ft_compare(args[0], "exit") == 0)
-        ft_exit_command(args, env);
+        ft_exit_command(args, *env);
     else if (ft_compare(args[0], "env") == 0)
-        ft_env_command(args, env);
+        ft_env_command(args, *env);
     else
         return 0;
     return 1;

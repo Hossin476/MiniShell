@@ -42,7 +42,7 @@ void	ft_clearnode(t_env *env, char *key)
 	node = NULL;
 }
 
-int	ft_unset_command(char **args, t_env *env)
+int	ft_unset_command(char **args, t_env **env)
 {
 	int flag;
 	int i;
@@ -61,7 +61,7 @@ int	ft_unset_command(char **args, t_env *env)
 		else
 		{
 			key = args[i];
-			ft_clearnode(env, key);
+			ft_clearnode(*env, key);
 			i++;
 		}
 	}

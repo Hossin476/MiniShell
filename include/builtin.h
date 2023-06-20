@@ -46,18 +46,18 @@ t_env	*get_env_node(t_env *env, char *key);
 t_env	*ft_envnew(void);
 void	ft_add_env(t_env **lst, t_env *new);
 void	free_keys(size_t j, char **ptr);
-void	add_env_node(t_env *env, char *key, char *value);
+void	add_env_node(t_env **env, char *key, char *value);
 t_env	*get_env_node(t_env *env, char *key);
 void    export_append(t_env *env, char **value, char **key);
-void	update_env_node(t_env *env, char *key, char *value);
+void	update_env_node(t_env **env, char *key, char *value);
 void	initialize_export_vars(char **args, t_env *env, t_export_vars *vars);
 
 
 // commands
 int		ft_exit_command(char **args, t_env *env);
 int		ft_cd_command(char **args, t_env *env);
-int		ft_export_command(char **args, t_env *env);
-int		ft_unset_command(char **args, t_env *env);
+int     ft_export_command(char **args, t_env **env);
+int		ft_unset_command(char **args, t_env **env);
 int		ft_pwd_command(char **args, t_env *env);
 int		ft_env_command(char **args, t_env *env);
 int		ft_echo_command(char **args, t_env *env);
