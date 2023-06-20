@@ -63,6 +63,8 @@ char	*get_cd_path(char **args, t_env *env)
 		oldpwd = get_env_value(env, "OLDPWD");
 		if (!oldpwd && ft_error_check("cd", 0, 5))
 			return (NULL);
+		if (oldpwd != NULL)
+			printf("%s\n", oldpwd);
 		path = oldpwd;
 	}
 	return (path);

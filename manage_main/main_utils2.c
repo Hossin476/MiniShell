@@ -81,7 +81,6 @@ int ft_pars(char *line,t_env *ENV,t_cmdexe ** finalcmd,t_lstherdoc **item)
 	head = NULL;
 	head = ft_tokenize(line);
 	cmdhead = get_cmdlist(&head);
-	//display(cmdhead);
 	cmdhead = expander(cmdhead, ENV);
 	cmdhead = ft_concater(cmdhead);
 	*item =  manage_heredocs(cmdhead, ENV);
