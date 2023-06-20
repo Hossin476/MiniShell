@@ -14,7 +14,7 @@ t_env	*ft_envnew(void)
 	return (item);
 }
 
-void	add_env_node(t_env *env, char *key, char *value)
+void	add_env_node(t_env **env, char *key, char *value)
 {
 	t_env	*new_node;
 
@@ -25,7 +25,7 @@ void	add_env_node(t_env *env, char *key, char *value)
 		new_node->value = NULL;
 	else
 		new_node->value = ft_strdup(value);
-	ft_add_env(&env, new_node);
+	ft_add_env(env, new_node);
 }
 
 t_env	*get_env_node(t_env *env, char *key)

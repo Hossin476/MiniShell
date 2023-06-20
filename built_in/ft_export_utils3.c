@@ -24,11 +24,11 @@ void	ft_export_solo(t_env *env)
 	free_keys(i, keys);
 }
 
-void	update_env_node(t_env *env, char *key, char *value)
+void	update_env_node(t_env **env, char *key, char *value)
 {
 	t_env	*node;
 
-	node = get_env_node(env, key);
+	node = get_env_node(*env, key);
 	if (node != NULL && value != NULL)
 	{
 		free(node->value);
