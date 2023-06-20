@@ -1,7 +1,6 @@
 #include "./include/minishell.h"
 
 
-
 void exedisplay(t_cmdexe *head)
 {
 	t_cmdexe *item;
@@ -25,22 +24,6 @@ void exedisplay(t_cmdexe *head)
 		item = item->next;
 	}
 }
- 
-void handle_shlvl(t_env *ENV)
-{
-	char *shlvl;
-	int lvl;
-
-	shlvl = get_env_value(ENV, "SHLVL");
-	if (shlvl != NULL)
-		lvl = ft_atoi(shlvl);
-	else
-		lvl = 1;
-	lvl++;
-	char *new_lvl = ft_itoa(lvl);
-	ft_setenv(&ENV, "SHLVL", new_lvl);
-	free(new_lvl);
-}
 
 t_env *fill_env(char **ev)
 {
@@ -50,34 +33,38 @@ t_env *fill_env(char **ev)
 	return ENV;
 }
 
+void free_minishell(t_minishell *ms)
+{
+    if (ms->line)
+        free(ms->line);
+    if (ms->finalcmd)
+        ft_freecdexe(ms->finalcmd);
+    if (ms->item)
+        ft_unlink_heredocs(ms->item);
+    free(ms->ENV);
+}
+
 int main(int ac, char **av, char **env)
 {
-	char *line;
-	t_cmdexe *finalcmd;
-	t_env *ENV;
-	t_lstherdoc *item;
+    t_minishell ms;
 
-	(void)ac;
-	(void)av;
-	ENV = fill_env(env);
-	handle_shlvl(ENV);
-	handle_signal(0);
-	int std_in = dup(STDIN_FILENO);
-	int std_out = dup(STDOUT_FILENO);
-	while (1)
-	{
-		dup2(std_in, 0);
-		dup2(std_out, 1);
-		line = readline("\033[32;1mMiniShell$: \033[0m ");
-		if (line && *line != '\0')
-			add_history(line);
-		handle_signal(0);
-		ft_eof(line);
-		if (!ft_pars(line, ENV, &finalcmd, &item))
-			continue;
-		ft_execute_cmd(finalcmd, ENV);
-		ft_unlink_heredocs(item);
-		ft_freecdexe(finalcmd);
-	}
-	free(ENV);
+    (void)ac;
+    (void)av;
+    init_minishell(&ms, env);
+    handle_shlvl(ms.ENV);
+    handle_signal(0);
+    while (1)
+    {
+        dup2(ms.std_in, 0);
+        dup2(ms.std_out, 1);
+        ms.line = readline("\033[32;1mMiniShell$: \033[0m ");
+        if (ms.line && *ms.line != '\0')
+            add_history(ms.line);
+        handle_signal(0);
+        ft_eof(ms.line);
+        if (!ft_pars(ms.line, ms.ENV, &ms.finalcmd, &ms.item))
+            continue;
+        ft_execute_cmd(ms.finalcmd, ms.ENV);
+    }
+    free_minishell(&ms);
 }

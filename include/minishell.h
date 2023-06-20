@@ -46,12 +46,25 @@ typedef struct s_globals
     int g_flag;
 } t_globals;
 
+typedef struct s_minishell
+{
+    char *line;
+    t_cmdexe *finalcmd;
+    t_env *ENV;
+    t_lstherdoc *item;
+    int std_in;
+    int std_out;
+}   t_minishell;
+
 t_globals globs;
 int expand_db_word(char **str, t_env *env);
 char *get_value(char *var, t_env *env);
 void handle_signal(int sig);
 void setup_signals(pid_t pid);
 void ft_children(int signo);
+void free_minishell(t_minishell *ms);
+void init_minishell(t_minishell *ms, char **env);
+void handle_shlvl(t_env *ENV);
 
 void ft_freecdexe(t_cmdexe *head);
 void ft_eof(char *line);

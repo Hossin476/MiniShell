@@ -41,3 +41,29 @@ char *ft_join_key_val(const char *s1, const char *sep, const char *s2)
     result[s1_len + sep_len + s2_len] = '\0';
     return result;
 }
+
+void handle_shlvl(t_env *ENV)
+{
+	char *shlvl;
+	int lvl;
+
+	shlvl = get_env_value(ENV, "SHLVL");
+	if (shlvl != NULL)
+		lvl = ft_atoi(shlvl);
+	else
+		lvl = 1;
+	lvl++;
+	char *new_lvl = ft_itoa(lvl);
+	ft_setenv(&ENV, "SHLVL", new_lvl);
+	free(new_lvl);
+}
+
+void init_minishell(t_minishell *ms, char **env)
+{
+    ms->line = NULL;
+    ms->finalcmd = NULL;
+    ms->ENV = fill_env(env);
+    ms->item = NULL;
+    ms->std_in = dup(STDIN_FILENO);
+    ms->std_out = dup(STDOUT_FILENO);
+}
