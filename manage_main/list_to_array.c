@@ -1,0 +1,43 @@
+#include "../include/minishell.h"
+
+char **env_to_array(t_env *env)
+{
+	int count;
+	t_env *cur_node;
+	int i;
+
+	count = 0;
+	i = 0;
+	cur_node = env;
+	while (cur_node != NULL)
+	{
+		count++;
+		cur_node = cur_node->next;
+	}
+	char **env_arr = malloc(sizeof(char *) * (count + 1));
+	cur_node = env;
+	while (i < count)
+	{
+		env_arr[i] = ft_join_key_val(cur_node->key, "=", cur_node->value);
+		cur_node = cur_node->next;
+		i++;
+	}
+	env_arr[count] = NULL;
+	return env_arr;
+}
+
+char *ft_join_key_val(const char *s1, const char *sep, const char *s2)
+{
+    size_t s1_len = ft_strlen(s1);
+    size_t sep_len = ft_strlen(sep);
+    size_t s2_len = ft_strlen(s2);
+
+    char *result = malloc(sizeof(char) * (s1_len + sep_len + s2_len + 1));
+    if (result == NULL)
+        return NULL;
+    ft_memcpy(result, s1, s1_len);
+    ft_memcpy(result + s1_len, sep, sep_len);
+    ft_memcpy(result + s1_len + sep_len, s2, s2_len);
+    result[s1_len + sep_len + s2_len] = '\0';
+    return result;
+}
