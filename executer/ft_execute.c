@@ -10,7 +10,7 @@ void ft_run_cmd(t_cmdexe *cmd,char **args, t_env *env)
 	if (!*args)
 		exit(0);
 	if (is_built_in(*args))
-		return (ft_execute_builtins(cmd,args, env), exit(0));
+		return (ft_execute_builtins(cmd,args, &env), exit(0));
 	if (is_path(*args))
 	{
 		path = ft_strdup(*args);
@@ -107,7 +107,7 @@ int ft_run_single_cmd(t_cmdexe *cmd, t_env *env)
 	return (pid);
 }
 
-void ft_execute_cmd(t_cmdexe *cmd, t_env *env)
+void ft_execute_cmd(t_cmdexe *cmd, t_env **env)
 {
 	t_cmdexe *cmdr;
 	if (!cmd)
@@ -116,8 +116,8 @@ void ft_execute_cmd(t_cmdexe *cmd, t_env *env)
 	if (ft_lstsize_cmd(cmdr) == 1 && is_built_in(*(cmdr->args)))
 		ft_execute_builtins(cmd, cmdr->args, env);
 	else if (ft_lstsize_cmd(cmdr) == 1 && !is_built_in(*(cmdr->args)))
-		ft_run_single_cmd(cmdr, env);
+		ft_run_single_cmd(cmdr, *env);
 	else
-		execute_multiple_cmd(cmdr, env);
+		execute_multiple_cmd(cmdr, *env);
 	handle_signal(0);
 }

@@ -64,7 +64,8 @@ int main(int ac, char **av, char **env)
         ft_eof(ms.line);
         if (!ft_pars(ms.line, ms.ENV, &ms.finalcmd, &ms.item))
             continue;
-        ft_execute_cmd(ms.finalcmd, ms.ENV);
+        
+        ft_execute_cmd(ms.finalcmd, &ms.ENV);
     }
     free_minishell(&ms);
 }
