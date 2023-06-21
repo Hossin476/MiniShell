@@ -1,10 +1,9 @@
 #include "../include/minishell.h"
 
-char *get_path(char *cmd, t_env *env)
+char	*get_path(char *cmd, t_env *env)
 {
-	char *path;
-	char **PATHS;
-
+	char	*path;
+	char	**PATHS;
 
 	if (!cmd)
 		return (NULL);
@@ -13,17 +12,18 @@ char *get_path(char *cmd, t_env *env)
 	{
 		PATHS = ft_split(path, ":");
 		free(path);
-		path = generate_path(PATHS,cmd);
-		return(path);
+		path = generate_path(PATHS, cmd);
+		return (path);
 	}
 	return (NULL);
 }
 
-int is_dir(char *path)
+int	is_dir(char *path)
 {
-	struct  stat statbuff;
-	stat(path,&statbuff);
-	return S_ISREG(statbuff.st_mode);
+	struct stat	statbuff;
+
+	stat(path, &statbuff);
+	return (S_ISREG(statbuff.st_mode));
 }
 
 void	ft_close(t_lstpipe *head)
@@ -34,11 +34,11 @@ void	ft_close(t_lstpipe *head)
 		head = head->next;
 	}
 }
-char *generate_path(char **PATHS, char *cmd)
+char	*generate_path(char **PATHS, char *cmd)
 {
-	char *path;
-	char *tmp;
-	char **ptr;
+	char	*path;
+	char	*tmp;
+	char	**ptr;
 
 	ptr = PATHS;
 	while (*ptr)
@@ -48,7 +48,7 @@ char *generate_path(char **PATHS, char *cmd)
 		{
 			free(tmp);
 			ft_free(PATHS);
-			return NULL;
+			return (NULL);
 		}
 		path = ft_strjoin(tmp, cmd);
 		free(tmp);
@@ -60,5 +60,5 @@ char *generate_path(char **PATHS, char *cmd)
 		free(path);
 		ptr++;
 	}
-	return(ft_free(PATHS),NULL);
+	return (ft_free(PATHS), NULL);
 }

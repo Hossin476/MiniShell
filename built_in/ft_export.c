@@ -60,7 +60,7 @@ int	ft_regex(char *wd, t_env *env, char **key, char **value)
 	{
 		*key = ft_substr(wd, 0, r.pl);
 		*value = ft_substr(wd, r.eq + 1, ft_strlen(wd) - r.eq - 1);
-		return (export_append(env, value, key),r.bol);
+		return (export_append(env, value, key), r.bol);
 	}
 	else if (r.eq != -1)
 	{
@@ -83,14 +83,11 @@ int	ft_export_command(char **args, t_env **env)
 	{
 		vars.key = NULL;
 		vars.value = NULL;
-
 		if (ft_regex(args[vars.i], *env, &vars.key, &vars.value) == -1)
 		{
-
 			vars.i++;
 			continue ;
 		}
-
 		update_env_node(env, vars.key, vars.value);
 		vars.i++;
 	}
