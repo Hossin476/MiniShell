@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:19:11 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/22 19:19:12 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:23:17 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	clear_list(t_cmdlst *head)
 	clear_lst(head->redir);
 	free(head);
 }
-
 
 int	ft_pars(char *line, t_env *ENV, t_cmdexe **finalcmd, t_lstherdoc **item)
 {
