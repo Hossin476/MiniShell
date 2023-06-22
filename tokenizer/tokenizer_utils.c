@@ -12,6 +12,7 @@ static int	ft_quotes_len(char *line, char c)
 	}
 	return (i);
 }
+
 static int	check_qt(char *line, char c)
 {
 	int	bol;

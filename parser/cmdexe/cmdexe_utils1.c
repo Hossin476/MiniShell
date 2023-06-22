@@ -15,8 +15,8 @@ int not_file_name(t_lsttoken *item)
 int  open_infiles(t_lsttoken *item)
 {
 	int fd;
-	fd = 0;
 
+	fd = 0;
 	if(!item)
 		return (0);
 	while (item)	
@@ -44,6 +44,7 @@ int  open_infiles(t_lsttoken *item)
 int ft_open_outfile(t_lsttoken *item)
 {
 	int fd;
+
 	fd = 1;
 	while (item)
 	{

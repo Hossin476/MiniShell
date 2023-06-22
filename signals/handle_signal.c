@@ -1,7 +1,5 @@
 #include "../include/minishell.h"
 
-extern int	g_exit_status;
-
 void	ft_new_prompt(int signum)
 {
 	if (signum == SIGINT)

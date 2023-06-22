@@ -1,8 +1,8 @@
 #include "../../include/minishell.h"
 
-int ft_strcmp_her(char *s1, char *s2, size_t n)
+int	ft_strcmp_her(char *s1, char *s2, size_t n)
 {
-	if (!s1 || !s2 )
+	if (!s1 || !s2)
 		return (-1);
 	if (ft_strlen(s1) != ft_strlen(s2))
 		return (-1);
@@ -45,7 +45,7 @@ void her_sig(int sig)
 	}
 }
 
-char	*generate_name(t_lsttoken *heredoc,int i)
+char *generate_name(t_lsttoken *heredoc, int i)
 {
 
 	char *path;
@@ -59,5 +59,5 @@ char	*generate_name(t_lsttoken *heredoc,int i)
 	path = ft_strjoin("/var/tmp/", heredoc->str);
 	free(heredoc->str);
 	heredoc->str = path;
-	return(tmp);
+	return (tmp);
 }

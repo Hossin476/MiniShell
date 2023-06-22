@@ -24,7 +24,7 @@ void	ft_handle_redires(char **line, t_token *token, char **str)
 				+ 1) != '>'))
 		*token = ft_get_redir(str, line);
 	else if ((**line == '<' && *(*line + 1) == '<') || (**line == '>' && *(*line
-					+ 1) == '>'))
+				+ 1) == '>'))
 		*token = ft_get_redir(str, line);
 }
 

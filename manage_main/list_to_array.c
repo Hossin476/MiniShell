@@ -52,12 +52,24 @@ void	handle_shlvl(t_env *ENV)
 	char	*shlvl;
 	int		lvl;
 	char	*new_lvl;
+	t_env *node;
+	t_env *new_node;
 
+	node = get_env_node(ENV, "SHLVL");
+	new_node = ft_envnew();
 	shlvl = get_env_value(ENV, "SHLVL");
+	if (node == NULL)
+	{
+		new_node->key = ft_strdup("SHLVL");
+		new_node->value = ft_itoa(0);
+		ft_add_env(&ENV, new_node);
+	}
 	if (shlvl != NULL)
 		lvl = ft_atoi(shlvl);
-	else
-		lvl = 1;
+	if(ft_atoi(shlvl) >=1000)
+		ft_putstr_fd("shell level too high, resetting to 1\n",2);
+	if(shlvl == NULL || ft_atoi(shlvl) >=1000)
+		lvl = 0;
 	lvl++;
 	new_lvl = ft_itoa(lvl);
 	ft_setenv(&ENV, "SHLVL", new_lvl);

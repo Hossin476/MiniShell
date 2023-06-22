@@ -1,9 +1,9 @@
 #include "./include/minishell.h"
 
-void	exedisplay(t_cmdexe *head)
+void exedisplay(t_cmdexe *head)
 {
-	t_cmdexe	*item;
-	char		**args;
+	t_cmdexe *item;
+	char **args;
 
 	item = head;
 	while (item)
@@ -25,18 +25,18 @@ void	exedisplay(t_cmdexe *head)
 	}
 }
 
-t_env	*fill_env(char **ev)
+t_env *fill_env(char **ev)
 {
-	t_env	*ENV;
+	t_env *ENV;
 
 	ENV = env_init(ev);
 	ft_setenv(&ENV, "OLDPWD", NULL);
 	return (ENV);
 }
 
-void	ft_clear_env(t_env **env)
+void ft_clear_env(t_env **env)
 {
-	t_env	*temp;
+	t_env *temp;
 
 	while (*env != NULL)
 	{
@@ -48,7 +48,7 @@ void	ft_clear_env(t_env **env)
 	}
 }
 
-void	free_minishell(t_minishell *ms)
+void free_minishell(t_minishell *ms)
 {
 	if (ms->finalcmd)
 		ft_freecdexe(ms->finalcmd);
@@ -56,9 +56,9 @@ void	free_minishell(t_minishell *ms)
 		ft_unlink_heredocs(ms->item);
 }
 
-int	main(int ac, char **av, char **env)
+int main(int ac, char **av, char **env)
 {
-	t_minishell	ms;
+	t_minishell ms;
 
 	(void)ac;
 	(void)av;
@@ -75,9 +75,10 @@ int	main(int ac, char **av, char **env)
 		handle_signal(0);
 		ft_eof(ms.line);
 		if (!ft_pars(ms.line, ms.ENV, &ms.finalcmd, &ms.item))
-			continue ;
+			continue;
 		ft_execute_cmd(ms.finalcmd, &ms.ENV);
 		free_minishell(&ms);
+		// system("leaks minishell");
 	}
 	ft_clear_env(&ms.ENV);
 	rl_clear_history();

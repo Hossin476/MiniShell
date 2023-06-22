@@ -36,7 +36,8 @@ void	sort_array_of_keys(char **keys);
 void	ft_export_solo(t_env *env);
 int     ft_regex(char *wd, t_env *env, char **key, char **value);
 void    init_val(t_regex *reg, char *word);
-int	ft_exportable(char *key);
+// int	ft_exportable(char *key);
+int	ft_exportable(char **key);
 
 int		ft_check_chars(char *line);
 int		ft_get_char(char *str, char c);

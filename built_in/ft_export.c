@@ -31,15 +31,16 @@ void	init_val(t_regex *reg, char *word)
 	reg->pl = ft_get_char(word, '+');
 }
 
-int	ft_exportable(char *key)
+int	ft_exportable(char **key)
 {
 	t_regex	r;
 
-	if (!ft_check_env(key) || !ft_check_chars(key))
+	if (!ft_check_env(*key) || !ft_check_chars(*key))
 	{
 		init_val(&r, "");
 		r.bol = -1;
-		ft_error_check("export", key, 4);
+		ft_error_check("export", *key, 4);
+		free(*key);
 		return (0);
 	}
 	return (1);
@@ -69,8 +70,8 @@ int	ft_regex(char *wd, t_env *env, char **key, char **value)
 	}
 	else
 		*key = ft_strdup(wd);
-	if (!ft_exportable(*key))
-		return (-1);
+	if (!ft_exportable(key))
+		return (free(*value),-1);
 	return (r.bol);
 }
 

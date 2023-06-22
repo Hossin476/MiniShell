@@ -1,7 +1,5 @@
 #include "../include/minishell.h"
 
-extern int	g_exit_status;
-
 int	is_valid_redire(t_lsttoken *item)
 {
 	if ((item->token & (tk_l_dir | tk_r_dir | tk_l_her | tk_r_her))
@@ -31,8 +29,8 @@ int	ft_check_pipe(t_lsttoken *tokens)
 {
 	if (tokens->token == tk_pipe)
 		return (printf("syntax error near to %s\n", tokens->str),
-				globs.g_exit_status = 258,
-				1);
+			globs.g_exit_status = 258,
+			1);
 	return (0);
 }
 
