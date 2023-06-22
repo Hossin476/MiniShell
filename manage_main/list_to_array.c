@@ -47,7 +47,7 @@ char	*ft_join_key_val(const char *s1, const char *sep, const char *s2)
 	return (result);
 }
 
-void	handle_shlvl(t_env **ENV)
+void	handle_shlvl(t_env **envir)
 {
 	char	*shlvl;
 	int		lvl;
@@ -55,14 +55,14 @@ void	handle_shlvl(t_env **ENV)
 	t_env	*node;
 	t_env	*new_node;
 
-	node = get_env_node(*ENV, "SHLVL");
-	shlvl = get_env_value(*ENV, "SHLVL");
+	node = get_env_node(*envir, "SHLVL");
+	shlvl = get_env_value(*envir, "SHLVL");
 	if (node == NULL)
 	{
 		new_node = ft_envnew();
 		new_node->key = ft_strdup("SHLVL");
 		new_node->value = ft_itoa(0);
-		ft_add_env(ENV, new_node);
+		ft_add_env(envir, new_node);
 	}
 	if (shlvl != NULL)
 		lvl = ft_atoi(shlvl);
@@ -72,7 +72,7 @@ void	handle_shlvl(t_env **ENV)
 		lvl = 0;
 	lvl++;
 	new_lvl = ft_itoa(lvl);
-	ft_setenv(ENV, "SHLVL", new_lvl);
+	ft_setenv(envir, "SHLVL", new_lvl);
 	free(new_lvl);
 }
 
@@ -80,7 +80,7 @@ void	init_minishell(t_minishell *ms, char **env)
 {
 	ms->line = NULL;
 	ms->finalcmd = NULL;
-	ms->ENV = fill_env(env);
+	ms->envir = fill_env(env);
 	ms->item = NULL;
 	ms->std_in = dup(STDIN_FILENO);
 	ms->std_out = dup(STDOUT_FILENO);

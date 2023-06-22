@@ -13,6 +13,7 @@
 # include <sys/types.h>
 # include <limits.h>
 # include <sys/stat.h>
+# include "../libft/libft.h"
 # include "env.h"
 # include "builtin.h"
 # include "tokenizer.h"
