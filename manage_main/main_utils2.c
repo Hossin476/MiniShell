@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_utils2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 19:19:11 by ykhourba          #+#    #+#             */
+/*   Updated: 2023/06/22 19:19:12 by ykhourba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 static void	clear_lst(t_lsttoken *head)
@@ -50,31 +62,6 @@ void	clear_list(t_cmdlst *head)
 	free(head);
 }
 
-void	display(t_cmdlst *head)
-{
-	t_lsttoken	*item;
-
-	while (head)
-	{
-		puts("-------------\n");
-		puts("cmds");
-		item = head->cmd;
-		while (item)
-		{
-			printf("|%s|%d|->", item->str, item->token);
-			item = item->next;
-		}
-		puts("\nredir");
-		item = head->redir;
-		while (item)
-		{
-			printf("|%s|%d|->", item->str, item->token);
-			item = item->next;
-		}
-		puts("\n-------------");
-		head = head->next;
-	}
-}
 
 int	ft_pars(char *line, t_env *ENV, t_cmdexe **finalcmd, t_lstherdoc **item)
 {
