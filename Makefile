@@ -59,10 +59,10 @@ all	:	$(NAME)
 $(NAME)	:	$(OBJ) $(LIBFT)
 	${CC} ${CFLAGS} $(LIB) ${LIBFT} ${OBJ} -o ${NAME} 
 
-$(LIBFT):
+$(LIBFT): ./libft/libft.h
 	$(MAKE) all -C ./libft
 
-%.o	:	%.c 
+%.o	:	%.c ./include/minishell.h
 	$(CC)  $(CFLAGS) -I $(RL_PATH)/include  -c -o $@ $<
 
 clean	:
