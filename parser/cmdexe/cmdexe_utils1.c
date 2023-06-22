@@ -9,14 +9,16 @@ int	not_file_name(t_lsttoken *item)
 	return (0);
 }
 
-int get_fd(int fd, t_lsttoken *item)
+int	get_fd(int fd, t_lsttoken *item)
 {
 	if (fd != 1)
 		close(fd);
 	if (item->token == tk_r_her)
-		fd = open(item->next->str, APPEND, 0644);
+		fd = open(item->next->str, O_CREAT | O_APPEND | O_RDWR,
+			0644);
 	else
-		fd = open(item->next->str, TRUNC, 0644);
+		fd = open(item->next->str, O_CREAT | O_RDWR | O_TRUNC,
+			0644);
 	return (fd);
 }
 
@@ -62,7 +64,7 @@ int	ft_open_outfile(t_lsttoken *item)
 				return (-1);
 			else
 			{
-				fd = get_fd(fd,item);
+				fd = get_fd(fd, item);
 				if (fd < 0)
 					return (-2);
 			}
