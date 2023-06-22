@@ -15,10 +15,10 @@ int	get_fd(int fd, t_lsttoken *item)
 		close(fd);
 	if (item->token == tk_r_her)
 		fd = open(item->next->str, O_CREAT | O_APPEND | O_RDWR,
-			0644);
+				0644);
 	else
 		fd = open(item->next->str, O_CREAT | O_RDWR | O_TRUNC,
-			0644);
+				0644);
 	return (fd);
 }
 
