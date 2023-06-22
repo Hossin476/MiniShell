@@ -17,6 +17,7 @@ static void	clear_lst(t_lsttoken *head)
 	free(head->str);
 	free(head);
 }
+
 void	ft_free_args(char **args)
 {
 	int	i;

@@ -33,16 +33,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	str[i] = '\0';
 	return (str);
 }
-
-char to_upper(unsigned int i,char s)
-{
-	(void)i;
-	if(s >='a' && s <='z')
-		return s-=32;
-	return s;
-}
-#include<stdio.h>
-int main()
-{
-	printf("%s",ft_strmapi("aiwuhasdhaud",to_upper));
-}

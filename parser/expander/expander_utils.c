@@ -1,13 +1,13 @@
 #include "../../include/minishell.h"
 
-void ft_expand_cmd(t_lsttoken *item, t_env *env, t_lsttoken **head)
+void	ft_expand_cmd(t_lsttoken *item, t_env *env, t_lsttoken **head)
 {
 	while (item)
 	{
 		if (!ft_strcmp(item->str, "$?"))
 		{
 			free(item->str);
-			item->str = ft_itoa(globs.g_exit_status);
+			item->str = ft_itoa(g_globs.g_exit_status);
 			item->token = tk_word;
 			item = item->next;
 		}
@@ -21,13 +21,13 @@ void ft_expand_cmd(t_lsttoken *item, t_env *env, t_lsttoken **head)
 	}
 }
 
-void expand_word(t_lsttoken **head, t_lsttoken *item, t_env *env)
+void	expand_word(t_lsttoken **head, t_lsttoken *item, t_env *env)
 {
-	char *value;
-	char **vars;
-	t_lsttoken *prev;
-	t_lsttoken *nodes;
-	t_lsttoken *next;
+	char		*value;
+	char		**vars;
+	t_lsttoken	*prev;
+	t_lsttoken	*nodes;
+	t_lsttoken	*next;
 
 	next = item->next;
 	value = get_value(item->str + 1, env);
@@ -47,9 +47,10 @@ void expand_word(t_lsttoken **head, t_lsttoken *item, t_env *env)
 		free(item);
 	}
 }
-char *get_value(char *var, t_env *env)
+
+char	*get_value(char *var, t_env *env)
 {
-	size_t var_len;
+	size_t	var_len;
 
 	var_len = ft_strlen(var);
 	while (env)
@@ -57,16 +58,18 @@ char *get_value(char *var, t_env *env)
 		if (var_len == ft_strlen(env->key))
 		{
 			if (ft_strncmp(var, env->key, var_len) == 0)
-				return ft_strdup(env->value);
+				return (ft_strdup(env->value));
 		}
 		env = env->next;
 	}
 	return (NULL);
 }
-int ft_handle_head(t_lsttoken *item, t_lsttoken **head, t_lsttoken **nodes, char *value)
+
+int	ft_handle_head(t_lsttoken *item, t_lsttoken **head, t_lsttoken **nodes,
+		char *value)
 {
-	t_lsttoken *prev;
-	t_lsttoken *next;
+	t_lsttoken	*prev;
+	t_lsttoken	*next;
 
 	next = item->next;
 	if (item == *head)
@@ -90,10 +93,11 @@ int ft_handle_head(t_lsttoken *item, t_lsttoken **head, t_lsttoken **nodes, char
 	}
 	return (0);
 }
-t_lsttoken *creat_list(char **str)
+
+t_lsttoken	*creat_list(char **str)
 {
-	t_lsttoken *head;
-	t_lsttoken *item;
+	t_lsttoken	*head;
+	t_lsttoken	*item;
 
 	if (!str || !*str)
 		return (NULL);
@@ -107,7 +111,6 @@ t_lsttoken *creat_list(char **str)
 		str++;
 		if (*str)
 		{
-
 			item = ft_lst_new();
 			item->str = ft_strdup(" ");
 			item->token = tk_wt_s;

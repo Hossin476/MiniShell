@@ -27,6 +27,7 @@ void	ft_freecdexe(t_cmdexe *head)
 	}
 	ft_clean_node(head);
 }
+
 void	ft_eof(char *line)
 {
 	if (line == NULL)
@@ -70,4 +71,3 @@ int	ft_check_heredoc(t_lstherdoc *item)
 	}
 	return (0);
 }
-

@@ -71,7 +71,7 @@ int	ft_regex(char *wd, t_env *env, char **key, char **value)
 	else
 		*key = ft_strdup(wd);
 	if (!ft_exportable(key))
-		return (free(*value),-1);
+		return (free(*value), -1);
 	return (r.bol);
 }
 

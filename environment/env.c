@@ -34,29 +34,28 @@ void	ft_add_env(t_env **lst, t_env *new)
 
 t_env	*env_init(char **env)
 {
-	t_env	*head;
-	int		i;
-	char	*key;
-	char	*value;
-	int		len;
-	t_env	*new_env;
+	t_env_init	env_data;
+	char		*key;
+	char		*value;
+	int			len;
+	t_env		*new_env;
 
-	head = NULL;
-	i = 0;
-	while (env[i])
+	env_data.head = NULL;
+	env_data.i = 0;
+	while (env[env_data.i])
 	{
 		len = 0;
-		while (env[i][len] && env[i][len] != '=')
+		while (env[env_data.i][len] && env[env_data.i][len] != '=')
 			len++;
-		key = ft_substr(env[i], 0, len);
-		value = ft_strdup(ft_strchr(env[i], '=') + 1);
+		key = ft_substr(env[env_data.i], 0, len);
+		value = ft_strdup(ft_strchr(env[env_data.i], '=') + 1);
 		new_env = ft_new_env(key, value);
 		if (new_env == NULL)
 			return (NULL);
 		free(value);
 		free(key);
-		ft_add_env(&head, new_env);
-		i++;
+		ft_add_env(&env_data.head, new_env);
+		env_data.i++;
 	}
-	return (head);
+	return (env_data.head);
 }

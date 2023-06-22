@@ -1,42 +1,17 @@
 #include "./include/minishell.h"
 
-void exedisplay(t_cmdexe *head)
+t_env	*fill_env(char **ev)
 {
-	t_cmdexe *item;
-	char **args;
+	t_env	*env;
 
-	item = head;
-	while (item)
-	{
-		printf("-----------\n");
-		printf("args:");
-		args = item->args;
-		while (*args)
-		{
-			printf("%s:", *args);
-			args++;
-		}
-		puts("");
-		printf("input:%d\n", item->input);
-		printf("output:%d\n", item->output);
-		printf("error_log:%s\n", item->error_log);
-		printf("------------\n");
-		item = item->next;
-	}
+	env = env_init(ev);
+	ft_setenv(&env, "OLDPWD", NULL);
+	return (env);
 }
 
-t_env *fill_env(char **ev)
+void	ft_clear_env(t_env **env)
 {
-	t_env *ENV;
-
-	ENV = env_init(ev);
-	ft_setenv(&ENV, "OLDPWD", NULL);
-	return (ENV);
-}
-
-void ft_clear_env(t_env **env)
-{
-	t_env *temp;
+	t_env	*temp;
 
 	while (*env != NULL)
 	{
@@ -48,7 +23,7 @@ void ft_clear_env(t_env **env)
 	}
 }
 
-void free_minishell(t_minishell *ms)
+void	free_minishell(t_minishell *ms)
 {
 	if (ms->finalcmd)
 		ft_freecdexe(ms->finalcmd);
@@ -56,14 +31,14 @@ void free_minishell(t_minishell *ms)
 		ft_unlink_heredocs(ms->item);
 }
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
-	t_minishell ms;
+	t_minishell	ms;
 
 	(void)ac;
 	(void)av;
 	init_minishell(&ms, env);
-	handle_shlvl(&ms.ENV);
+	handle_shlvl(&ms.envir);
 	handle_signal(0);
 	while (1)
 	{
@@ -74,11 +49,11 @@ int main(int ac, char **av, char **env)
 			add_history(ms.line);
 		handle_signal(0);
 		ft_eof(ms.line);
-		if (!ft_pars(ms.line, ms.ENV, &ms.finalcmd, &ms.item))
-			continue;
-		ft_execute_cmd(ms.finalcmd, &ms.ENV);
+		if (!ft_pars(ms.line, ms.envir, &ms.finalcmd, &ms.item))
+			continue ;
+		ft_execute_cmd(ms.finalcmd, &ms.envir);
 		free_minishell(&ms);
 	}
-	ft_clear_env(&ms.ENV);
+	ft_clear_env(&ms.envir);
 	rl_clear_history();
 }

@@ -29,7 +29,7 @@ int	ft_check_pipe(t_lsttoken *tokens)
 {
 	if (tokens->token == tk_pipe)
 		return (printf("syntax error near to %s\n", tokens->str),
-			globs.g_exit_status = 258,
+			g_globs.g_exit_status = 258,
 			1);
 	return (0);
 }
@@ -44,18 +44,18 @@ int	syntax_checker(t_lsttoken *tokens)
 	{
 		if (tokens->token == tk_op_qt)
 			return (printf("syntax error open %s\n", tokens->str),
-				globs.g_exit_status = 258, 0);
+				g_globs.g_exit_status = 258, 0);
 		else if (!is_valid_redire(tokens))
 			return (printf("syntax error near to %s\n", tokens->str),
-				globs.g_exit_status = 258, 0);
+				g_globs.g_exit_status = 258, 0);
 		else if (!is_valid_pipe(tokens))
 			return (printf("syntax error near to %s\n", tokens->str),
-				globs.g_exit_status = 258, 0);
+				g_globs.g_exit_status = 258, 0);
 		else if (tokens->next == NULL)
 		{
 			if (is_tokens(tokens))
 				return (printf("syntax error near to %s\n", tokens->str),
-					globs.g_exit_status = 258, 0);
+					g_globs.g_exit_status = 258, 0);
 		}
 		tokens = tokens->next;
 	}

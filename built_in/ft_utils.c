@@ -53,8 +53,8 @@ int	ft_error_check(char *cmd, char *word, int status)
 	else if (status == 6)
 		ft_putstr_fd(": error retrieving current directory\
 		getcwd: cannot access parent directories: No such file or directory\n",
-		2);
-	globs.g_exit_status = 1;
+			2);
+	g_globs.g_exit_status = 1;
 	return (0);
 }
 

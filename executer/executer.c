@@ -5,7 +5,7 @@ int	ft_execute_builtins(t_cmdexe *cmd, char **args, t_env **env)
 	if (args == NULL || args[0] == NULL)
 		return (1);
 	if (cmd->error_log)
-		return (printf("%s", cmd->error_log), globs.g_exit_status = 1, 1);
+		return (printf("%s", cmd->error_log), g_globs.g_exit_status = 1, 1);
 	dup2(cmd->output, 1);
 	if (ft_compare(args[0], "echo") == 0)
 		return (ft_echo_command(args, *env));
@@ -35,6 +35,7 @@ char	*check_path(char *args, t_env *env)
 		return (ft_putstr_fd("Error: command not found\n", 2), exit(127), NULL);
 	return (path);
 }
+
 void	ft_add_fd(t_lstpipe **head, int fd1, int fd2)
 {
 	ft_lst_add_pipe(head, ft_lstnew_pip(fd1));

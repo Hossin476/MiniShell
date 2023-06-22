@@ -1,26 +1,24 @@
-
 #include "../../include/minishell.h"
 
-int is_redir_word(t_lsttoken *item)
+int	is_redir_word(t_lsttoken *item)
 {
-	if (item->token == tk_word || item->token == tk_db_qt ||
-	item->token == tk_sl_qt || item->token == tk_exp)
+	if (item->token == tk_word || item->token == tk_db_qt
+		||item->token == tk_sl_qt || item->token == tk_exp)
 		return (1);
 	return (0);
 }
 
-void ft_check_cmds(t_cmdlst *headcmd)
+void	ft_check_cmds(t_cmdlst *headcmd)
 {
-	if (!headcmd)
-		return;
-	t_cmdlst *cmditem;
-	t_lsttoken *item;
+	t_cmdlst	*cmditem;
+	t_lsttoken	*item;
 
+	if (!headcmd)
+		return ;
 	cmditem = headcmd;
 	while (cmditem)
 	{
 		item = cmditem->cmd;
-
 		if (item && item->token == tk_wt_s)
 		{
 			cmditem->cmd = item->next;
@@ -30,10 +28,11 @@ void ft_check_cmds(t_cmdlst *headcmd)
 		cmditem = cmditem->next;
 	}
 }
-void ft_handle_cmds(t_cmdlst **cmd, t_lsttoken **head)
+
+void	ft_handle_cmds(t_cmdlst **cmd, t_lsttoken **head)
 {
-	t_lsttoken *item;
-	t_cmdlst *lcmd;
+	t_lsttoken	*item;
+	t_cmdlst	*lcmd;
 
 	lcmd = *cmd;
 	item = *head;
@@ -52,9 +51,9 @@ void ft_handle_cmds(t_cmdlst **cmd, t_lsttoken **head)
 	}
 }
 
-static void handlepipe(t_lsttoken **head, t_lsttoken **item)
+static void	handlepipe(t_lsttoken **head, t_lsttoken **item)
 {
-	t_lsttoken *garbage;
+	t_lsttoken	*garbage;
 
 	if (*item && (*item)->token == tk_pipe)
 	{
@@ -65,11 +64,12 @@ static void handlepipe(t_lsttoken **head, t_lsttoken **item)
 		*item = (*head);
 	}
 }
-t_cmdlst *get_cmdlist(t_lsttoken **head)
+
+t_cmdlst	*get_cmdlist(t_lsttoken **head)
 {
-	t_lsttoken *item;
-	t_cmdlst *headcmd;
-	t_cmdlst *cmd;
+	t_lsttoken	*item;
+	t_cmdlst	*headcmd;
+	t_cmdlst	*cmd;
 
 	headcmd = NULL;
 	cmd = NULL;
@@ -85,5 +85,5 @@ t_cmdlst *get_cmdlist(t_lsttoken **head)
 		item = *head;
 	}
 	ft_check_cmds(headcmd);
-	return headcmd;
+	return (headcmd);
 }

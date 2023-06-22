@@ -27,8 +27,8 @@ int	extanded_atoi(const char *str, int *flag)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = 10 * (res) + str[i++] - '0';
-		if ((res > (uint64_t)LLONG_MAX && sign == 1) ||
-			(res > 9223372036854775806ULL && sign == -1))
+		if ((res > (uint64_t)LLONG_MAX && sign == 1)
+			|| (res > 9223372036854775806ULL && sign == -1))
 			*flag = 1;
 	}
 	while ((str[i] > 8 && str[i] < 14) || str[i] == 32)

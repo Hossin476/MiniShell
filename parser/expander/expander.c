@@ -1,22 +1,22 @@
 #include "../../include/minishell.h"
 
-void expand(t_lsttoken **head, t_lsttoken *item, t_env *env)
+void	expand(t_lsttoken **head, t_lsttoken *item, t_env *env)
 {
-
 	if (item->token == tk_exp)
 		expand_word(head, item, env);
 	else if (item->token == tk_db_qt || item->token == tk_exp)
 		item->token = expand_db_word(&item->str, env);
 }
 
-void ft_expand_redir(t_lsttoken *item, t_env *env, t_lsttoken **head)
+void	ft_expand_redir(t_lsttoken *item, t_env *env, t_lsttoken **head)
 {
 	while (item)
 	{
 		if (item->token == tk_l_her)
 		{
 			item = item->next;
-			while (item && !(item->token & (tk_l_dir | tk_r_dir | tk_l_her | tk_r_her)))
+			while (item
+				&& !(item->token & (tk_l_dir | tk_r_dir | tk_l_her | tk_r_her)))
 				item = item->next;
 		}
 		if (item && is_expandable(head, item, 1, env))
@@ -29,10 +29,10 @@ void ft_expand_redir(t_lsttoken *item, t_env *env, t_lsttoken **head)
 	}
 }
 
-t_cmdlst *expander(t_cmdlst *head, t_env *env)
+t_cmdlst	*expander(t_cmdlst *head, t_env *env)
 {
-	t_cmdlst *cmdlist;
-	t_lsttoken *item;
+	t_cmdlst	*cmdlist;
+	t_lsttoken	*item;
 
 	cmdlist = head;
 	while (cmdlist)

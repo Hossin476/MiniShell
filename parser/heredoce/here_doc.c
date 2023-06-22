@@ -1,14 +1,17 @@
 #include "../../include/minishell.h"
 
-int ft_check_g_flag(t_lsttoken *heredoc, t_lstherdoc *item, int *fd)
+int	ft_check_g_flag(t_lsttoken *heredoc, t_lstherdoc *item, int *fd)
 {
-	if (globs.g_flag == 1)
+	const char	*ttyname_path;
+	int			fsd;
+
+	if (g_globs.g_flag == 1)
 	{
 		unlink(heredoc->str);
-		const char *ttyname_path = ttyname(1);
+		ttyname_path = ttyname(1);
 		if (ttyname_path)
 		{
-			int fsd = open(ttyname_path, O_RDWR, 0600);
+			fsd = open(ttyname_path, O_RDWR, 0600);
 			if (fsd == -1)
 			{
 				perror("failed");
@@ -24,23 +27,23 @@ int ft_check_g_flag(t_lsttoken *heredoc, t_lstherdoc *item, int *fd)
 	return (0);
 }
 
-int ft_fill_heredoc(t_info info, char *lim, int fd)
+int	ft_fill_heredoc(t_info info, char *lim, int fd)
 {
-	char *line;
-	char *full_line;
+	char	*line;
+	char	*full_line;
 
 	while (1)
 	{
 		line = readline("here_doc: ");
 		if (ft_check_g_flag(info.heredoc, info.item, &fd))
-			break;
+			break ;
 		if (!line)
 		{
-			globs.g_exit_status = 0;
-			break;
+			g_globs.g_exit_status = 0;
+			break ;
 		}
 		if (!ft_strcmp_her(line, lim, ft_strlen(line)))
-			break;
+			break ;
 		full_line = ft_strjoin(line, "\n");
 		if (info.heredoc->token == tk_exp || info.heredoc->token == tk_word)
 			expand_db_word(&full_line, info.env);
@@ -53,11 +56,11 @@ int ft_fill_heredoc(t_info info, char *lim, int fd)
 	return (fd);
 }
 
-t_lstherdoc *open_heredoc(t_lsttoken *heredoc, int i, t_env *env)
+t_lstherdoc	*open_heredoc(t_lsttoken *heredoc, int i, t_env *env)
 {
-	int fd;
-	char *tmp;
-	t_lstherdoc *item;
+	int			fd;
+	char		*tmp;
+	t_lstherdoc	*item;
 
 	tmp = generate_name(heredoc, i);
 	item = ft_newherdoc(ft_strdup(heredoc->str));
@@ -66,15 +69,15 @@ t_lstherdoc *open_heredoc(t_lsttoken *heredoc, int i, t_env *env)
 	fd = ft_fill_heredoc((t_info){item, heredoc, env}, tmp, fd);
 	close(fd);
 	heredoc->token = tk_word;
-	globs.g_flag = 0;
+	g_globs.g_flag = 0;
 	return (item);
 }
 
-t_lstherdoc *ft_run_heredoc(t_lsttoken *item, t_env *env, int *flag)
+t_lstherdoc	*ft_run_heredoc(t_lsttoken *item, t_env *env, int *flag)
 {
-	t_lstherdoc *heredoc;
-	t_lstherdoc *heredoc_item;
-	int i;
+	t_lstherdoc	*heredoc;
+	t_lstherdoc	*heredoc_item;
+	int			i;
 
 	heredoc = NULL;
 	i = 0;
@@ -93,13 +96,13 @@ t_lstherdoc *ft_run_heredoc(t_lsttoken *item, t_env *env, int *flag)
 	return (heredoc);
 }
 
-t_lstherdoc *manage_heredocs(t_cmdlst *cmd, t_env *env)
+t_lstherdoc	*manage_heredocs(t_cmdlst *cmd, t_env *env)
 {
-	t_lsttoken *item;
-	t_cmdlst *cmds;
-	t_lstherdoc *heredoc;
-	t_lstherdoc *heredoc_item;
-	int flag;
+	t_lsttoken	*item;
+	t_cmdlst	*cmds;
+	t_lstherdoc	*heredoc;
+	t_lstherdoc	*heredoc_item;
+	int			flag;
 
 	flag = 0;
 	heredoc = NULL;

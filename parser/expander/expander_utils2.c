@@ -1,8 +1,8 @@
 #include "../../include/minishell.h"
 
-int ft_str_exp(char *str)
+int	ft_str_exp(char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (*str && *str != '$')
@@ -13,11 +13,12 @@ int ft_str_exp(char *str)
 	return (len);
 }
 
-int ft_white_space(char **str, char **line)
+int	ft_white_space(char **str, char **line)
 {
-	char *wt = *line;
-	int i;
+	char	*wt;
+	int		i;
 
+	wt = *line;
 	i = 0;
 	while (*wt && (*wt == ' ' || *wt == '\t'))
 	{
@@ -29,9 +30,9 @@ int ft_white_space(char **str, char **line)
 	return (tk_wt_s);
 }
 
-int word_len(char *str)
+int	word_len(char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (*str == '$')
@@ -47,21 +48,21 @@ int word_len(char *str)
 	return (len);
 }
 
-int get_word(char **str, char **line)
+int	get_word(char **str, char **line)
 {
 	*str = ft_substr(*line, 0, word_len(*line));
 	*line += ft_strlen(*str);
 	return (tk_word);
 }
 
-t_lsttoken *tokinze_db_word(char *line)
+t_lsttoken	*tokinze_db_word(char *line)
 {
-	t_lsttoken *head;
-	t_lsttoken *item;
+	t_lsttoken	*head;
+	t_lsttoken	*item;
 
 	head = NULL;
 	if (line == NULL)
-		return NULL;
+		return (NULL);
 	while (*line)
 	{
 		item = ft_lst_new();
