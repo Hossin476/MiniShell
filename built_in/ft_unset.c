@@ -1,10 +1,9 @@
 #include "../include/minishell.h"
 
-
 int	ft_check_args(char *env_name)
 {
-	int full_length;
-	int env_length;
+	int	full_length;
+	int	env_length;
 
 	full_length = ft_strlen(env_name);
 	env_length = ft_check_chars(env_name);
@@ -25,7 +24,7 @@ t_env	*get_first_node(t_env *env)
 
 void	ft_clearnode(t_env *env, char *key)
 {
-	t_env *node;
+	t_env	*node;
 
 	node = get_first_node(env);
 	while (node && ft_compare(node->key, key))
@@ -44,9 +43,9 @@ void	ft_clearnode(t_env *env, char *key)
 
 int	ft_unset_command(char **args, t_env **env)
 {
-	int flag;
-	int i;
-	char *key;
+	int		flag;
+	int		i;
+	char	*key;
 
 	flag = 1;
 	i = 1;
@@ -66,6 +65,6 @@ int	ft_unset_command(char **args, t_env **env)
 		}
 	}
 	if (flag)
-		globs.g_exit_status = 0;
+		g_globs.g_exit_status = 0;
 	return (flag);
 }

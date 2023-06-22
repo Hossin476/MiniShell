@@ -1,4 +1,5 @@
 #include "../include/minishell.h"
+
 int	check_option(char *word, char opt_chr)
 {
 	int	i;
@@ -38,6 +39,6 @@ int	ft_echo_command(char **args, t_env *env)
 	}
 	if (bol == 1)
 		write(1, "\n", 1);
-	globs.g_exit_status = 0;
+	g_globs.g_exit_status = 0;
 	return (0);
 }

@@ -1,11 +1,11 @@
 #include "../include/minishell.h"
 
-static void clear_lst(t_lsttoken *head)
+static void	clear_lst(t_lsttoken *head)
 {
-	t_lsttoken *lst;
+	t_lsttoken	*lst;
 
 	if (!head)
-		return;
+		return ;
 	lst = head->next;
 	while (lst)
 	{
@@ -17,9 +17,11 @@ static void clear_lst(t_lsttoken *head)
 	free(head->str);
 	free(head);
 }
-void ft_free_args(char **args)
+
+void	ft_free_args(char **args)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (args[i])
 	{
@@ -28,11 +30,12 @@ void ft_free_args(char **args)
 	}
 }
 
-void clear_list(t_cmdlst *head)
+void	clear_list(t_cmdlst *head)
 {
-	t_cmdlst *lst;
+	t_cmdlst	*lst;
+
 	if (!head)
-		return;
+		return ;
 	lst = head->next;
 	while (lst)
 	{
@@ -47,9 +50,9 @@ void clear_list(t_cmdlst *head)
 	free(head);
 }
 
-void display(t_cmdlst *head)
+void	display(t_cmdlst *head)
 {
-	t_lsttoken *item;
+	t_lsttoken	*item;
 
 	while (head)
 	{
@@ -73,28 +76,26 @@ void display(t_cmdlst *head)
 	}
 }
 
-int ft_pars(char *line,t_env *ENV,t_cmdexe ** finalcmd,t_lstherdoc **item)
+int	ft_pars(char *line, t_env *ENV, t_cmdexe **finalcmd, t_lstherdoc **item)
 {
-	t_lsttoken *head;
-	t_cmdlst *cmdhead;
+	t_lsttoken	*head;
+	t_cmdlst	*cmdhead;
 
 	head = NULL;
 	head = ft_tokenize(line);
 	cmdhead = get_cmdlist(&head);
 	cmdhead = expander(cmdhead, ENV);
 	cmdhead = ft_concater(cmdhead);
-	*item =  manage_heredocs(cmdhead, ENV);
-	if(ft_check_heredoc(*item))
+	*item = manage_heredocs(cmdhead, ENV);
+	if (ft_check_heredoc(*item))
 	{
 		clear_list(cmdhead);
 		ft_unlink_heredocs(*item);
 		handle_signal(0);
 		*item = NULL;
-		return(0);
+		return (0);
 	}
-	
 	*finalcmd = creat_cmdexe(cmdhead);
-
 	clear_list(cmdhead);
 	return (1);
 }

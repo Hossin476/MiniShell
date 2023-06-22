@@ -10,6 +10,6 @@ int	ft_pwd_command(char **args, t_env *env)
 		ft_putendl_fd(get_env_value(env, "PWD"), 1);
 	ft_putendl_fd(pwd, 1);
 	free(pwd);
-	globs.g_exit_status = 0;
+	g_globs.g_exit_status = 0;
 	return (0);
 }

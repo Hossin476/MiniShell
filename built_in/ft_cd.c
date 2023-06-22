@@ -90,7 +90,7 @@ int	change_directory(char *path, char *old_pwd, t_env *env)
 	ft_setenv(&env, "PWD", new_pwd);
 	free(old_pwd);
 	free(new_pwd);
-	globs.g_exit_status = 0;
+	g_globs.g_exit_status = 0;
 	return (0);
 }
 

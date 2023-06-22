@@ -83,8 +83,8 @@ int	ft_check_chars(char *line)
 
 int	ft_check_env(char *key)
 {
-	int key_len;
-	int env_len;
+	int	key_len;
+	int	env_len;
 
 	key_len = ft_strlen(key);
 	env_len = ft_check_chars(key);

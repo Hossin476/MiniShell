@@ -1,12 +1,10 @@
 #include "../include/minishell.h"
 
-extern int	g_exit_status;
-
 void	ft_new_prompt(int signum)
 {
 	if (signum == SIGINT)
 	{
-		globs.g_exit_status = 1;
+		g_globs.g_exit_status = 1;
 		rl_replace_line("", 1);
 		ft_putendl_fd("", 1);
 		if (rl_on_new_line() == -1)

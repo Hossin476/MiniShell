@@ -16,7 +16,7 @@ typedef struct s_env
 	char			*value;
 	struct s_env	*next;
 	struct s_env	*prev;
-}					t_env;
+}	t_env;
 
 size_t				ft_strlen(const char *str);
 char				*ft_strchr(const char *str, int c);

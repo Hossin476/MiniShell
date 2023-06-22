@@ -21,7 +21,7 @@ int	wait_all(pid_t pid)
 		status = 128 + wtermsig(status);
 	else
 		status = wexitstatus(status);
-	globs.g_exit_status = status;
+	g_globs.g_exit_status = status;
 	if (st == SIGINT || st == SIGQUIT)
 	{
 		if (st == SIGQUIT)

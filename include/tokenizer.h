@@ -1,7 +1,7 @@
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
-# include "../libft/libft.h"
-# include <stdio.h>
+
+# include "minishell.h"
 
 typedef enum s_token
 {
@@ -17,7 +17,7 @@ typedef enum s_token
 	tk_r_her = 1 << 10,
 	tk_exp = 1 << 11,
 	tk_joined = 1 << 12,
-}						t_token;
+}	t_token;
 
 typedef struct s_lsttoken
 {
@@ -26,27 +26,26 @@ typedef struct s_lsttoken
 	struct s_lsttoken	*next;
 }						t_lsttoken;
 
-t_lsttoken				*ft_tokenize(char *line);
-void					ft_lstaddback(t_lsttoken **lst, t_lsttoken *new);
-t_lsttoken				*ft_lst_new(void);
-int						syntax_checker(t_lsttoken *tokens);
-void					rm_node(t_lsttoken *node);
-void					ft_rm_spaces(t_lsttoken *header);
-int						ft_str_var(char *line);
-int						is_var(char c);
-int						ft_get_var(char **str, char **line);
+t_lsttoken	*ft_tokenize(char *line);
+void		ft_lstaddback(t_lsttoken **lst, t_lsttoken *new);
+t_lsttoken	*ft_lst_new(void);
+int			syntax_checker(t_lsttoken *tokens);
+void		rm_node(t_lsttoken *node);
+void		ft_rm_spaces(t_lsttoken *header);
+int			is_var(char c);
+int			ft_get_var(char **str, char **line);
+t_lsttoken	*ft_tokenize(char *line);
+void		ft_lstaddback(t_lsttoken **lst, t_lsttoken *new);
+t_lsttoken	*ft_lst_new(void);
+int			syntax_checker(t_lsttoken *tokens);
+void		rm_node(t_lsttoken *node);
+void		ft_rm_spaces(t_lsttoken *header);
+int			is_var(char c);
+int			ft_get_var(char **str, char **line);
+int			ft_get_quotes(char **str, char **line);
+int			ft_get_pipe(char **str, char **line);
+int			ft_get_wt(char **str, char **line);
+int			ft_get_redir(char **str, char **line);
+int			ft_get_word(char **str, char **line);
 
-t_lsttoken *ft_tokenize(char *line);
-void	ft_lstaddback(t_lsttoken **lst, t_lsttoken *new);
-t_lsttoken	*ft_lst_new();
-int syntax_checker(t_lsttoken *tokens);
-void rm_node(t_lsttoken *node);
-void ft_rm_spaces(t_lsttoken *header);
-int is_var(char c);
-int ft_get_var(char **str,char **line);
-int ft_get_quotes(char **str,char **line);
-int ft_get_pipe(char **str,char **line);
-int ft_get_wt(char **str,char **line);
-int ft_get_redir(char **str,char **line);
-int ft_get_word(char **str,char **line);
 #endif

@@ -1,6 +1,5 @@
 #include "../include/minishell.h"
 
-
 void	ft_export_solo(t_env *env)
 {
 	char	**keys;
@@ -53,4 +52,3 @@ void	initialize_export_vars(char **args, t_env *env, t_export_vars *vars)
 	if (strlen_double_ptr(args) == 1)
 		ft_export_solo(env);
 }
-

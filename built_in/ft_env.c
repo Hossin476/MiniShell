@@ -34,6 +34,6 @@ int	ft_env_command(char **args, t_env *env)
 		cur_node = cur_node->next;
 	}
 	free(cur_node);
-	globs.g_exit_status = 0;
+	g_globs.g_exit_status = 0;
 	return (0);
 }

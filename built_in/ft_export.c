@@ -31,15 +31,16 @@ void	init_val(t_regex *reg, char *word)
 	reg->pl = ft_get_char(word, '+');
 }
 
-int	ft_exportable(char *key)
+int	ft_exportable(char **key)
 {
 	t_regex	r;
 
-	if (!ft_check_env(key) || !ft_check_chars(key))
+	if (!ft_check_env(*key) || !ft_check_chars(*key))
 	{
 		init_val(&r, "");
 		r.bol = -1;
-		ft_error_check("export", key, 4);
+		ft_error_check("export", *key, 4);
+		free(*key);
 		return (0);
 	}
 	return (1);
@@ -60,7 +61,7 @@ int	ft_regex(char *wd, t_env *env, char **key, char **value)
 	{
 		*key = ft_substr(wd, 0, r.pl);
 		*value = ft_substr(wd, r.eq + 1, ft_strlen(wd) - r.eq - 1);
-		return (export_append(env, value, key),r.bol);
+		return (export_append(env, value, key), r.bol);
 	}
 	else if (r.eq != -1)
 	{
@@ -69,8 +70,8 @@ int	ft_regex(char *wd, t_env *env, char **key, char **value)
 	}
 	else
 		*key = ft_strdup(wd);
-	if (!ft_exportable(*key))
-		return (r.bol);
+	if (!ft_exportable(key))
+		return (free(*value), -1);
 	return (r.bol);
 }
 
@@ -83,14 +84,11 @@ int	ft_export_command(char **args, t_env **env)
 	{
 		vars.key = NULL;
 		vars.value = NULL;
-
 		if (ft_regex(args[vars.i], *env, &vars.key, &vars.value) == -1)
 		{
-
 			vars.i++;
 			continue ;
 		}
-
 		update_env_node(env, vars.key, vars.value);
 		vars.i++;
 	}

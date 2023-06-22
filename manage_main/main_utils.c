@@ -1,24 +1,23 @@
 #include "../include/minishell.h"
 
-
-void ft_clean_node(t_cmdexe *item)
+void	ft_clean_node(t_cmdexe *item)
 {
-	if(item->input !=0)
-		if(!close(item->input))
-	if(item->output!=1)
-		close(item->output);
+	if (item->input != 0)
+		if (!close(item->input))
+			if (item->output != 1)
+				close(item->output);
 	free(item->error_log);
 	ft_free_args(item->args);
 	free(item->args);
 	free(item);
 }
 
-void ft_freecdexe(t_cmdexe *head)
+void	ft_freecdexe(t_cmdexe *head)
 {
-	t_cmdexe *item;
+	t_cmdexe	*item;
 
 	if (!head)
-		return;
+		return ;
 	item = head->next;
 	while (item)
 	{
@@ -28,7 +27,8 @@ void ft_freecdexe(t_cmdexe *head)
 	}
 	ft_clean_node(head);
 }
-void ft_eof(char *line)
+
+void	ft_eof(char *line)
 {
 	if (line == NULL)
 	{
@@ -37,13 +37,13 @@ void ft_eof(char *line)
 	}
 }
 
-void ft_unlink_heredocs(t_lstherdoc * redir)
+void	ft_unlink_heredocs(t_lstherdoc *redir)
 {
-	t_lstherdoc *tmp;
+	t_lstherdoc	*tmp;
 
 	tmp = redir;
-	if(!redir)
-		return;
+	if (!redir)
+		return ;
 	while (tmp)
 	{
 		unlink(tmp->path);
@@ -61,14 +61,13 @@ void ft_unlink_heredocs(t_lstherdoc * redir)
 	free(redir);
 }
 
-int ft_check_heredoc(t_lstherdoc *item)
+int	ft_check_heredoc(t_lstherdoc *item)
 {
 	while (item)
 	{
-		if(item->flag)
-			return 1;
+		if (item->flag)
+			return (1);
 		item = item->next;
 	}
-	return(0);
+	return (0);
 }
-
