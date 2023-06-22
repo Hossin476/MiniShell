@@ -11,6 +11,9 @@ typedef struct s_cmdexe
 	struct s_cmdexe	*next;
 }	t_cmdexe;
 
+# define APPEND (O_CREAT | O_APPEND | O_RDWR) 
+# define TRUNC (O_CREAT | O_RDWR | O_TRUNC) 
+
 t_cmdexe	*cmdexe_new(void);
 void		addcmdexe_back(t_cmdexe **head, t_cmdexe *new);
 size_t		ft_cmd_size(t_lsttoken *cmd);
@@ -21,5 +24,6 @@ int			open_infiles(t_lsttoken *item);
 int			ft_open_outfile(t_lsttoken *item);
 int			open_outfiles(t_lsttoken *head);
 t_cmdexe	*creat_cmdexe(t_cmdlst *cmds);
+int			get_fd(int fd, t_lsttoken *item);
 
 #endif
