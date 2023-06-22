@@ -64,9 +64,8 @@ void setup_signals(pid_t pid);
 void ft_children(int signo);
 void free_minishell(t_minishell *ms);
 void init_minishell(t_minishell *ms, char **env);
-void handle_shlvl(t_env *ENV);
+void	handle_shlvl(t_env **ENV);
 t_env *fill_env(char **ev);
-
 void ft_freecdexe(t_cmdexe *head);
 void ft_eof(char *line);
 void ft_unlink_heredocs(t_lstherdoc *redir);

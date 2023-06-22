@@ -63,7 +63,7 @@ int main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	init_minishell(&ms, env);
-	handle_shlvl(ms.ENV);
+	handle_shlvl(&ms.ENV);
 	handle_signal(0);
 	while (1)
 	{
@@ -78,7 +78,6 @@ int main(int ac, char **av, char **env)
 			continue;
 		ft_execute_cmd(ms.finalcmd, &ms.ENV);
 		free_minishell(&ms);
-		// system("leaks minishell");
 	}
 	ft_clear_env(&ms.ENV);
 	rl_clear_history();
