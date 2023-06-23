@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshail <lshail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:18:30 by lshail            #+#    #+#             */
-/*   Updated: 2023/06/22 19:18:31 by lshail           ###   ########.fr       */
+/*   Updated: 2023/06/23 13:21:10 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	*check_path(char *args, t_env *env)
 {
 	char	*path;
 
+	if (!ft_strcmp(args, "."))
+		return (ft_putstr_fd("filename argument required\n", 2), exit(2), NULL);
 	path = get_path(args, env);
 	if (!path || !ft_strcmp(args, ""))
 		return (ft_putstr_fd("Error: command not found\n", 2), exit(127), NULL);

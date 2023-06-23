@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:18:24 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/22 19:18:25 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:36:43 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_lstherdoc	*ft_newherdoc(char *path)
 	t_lstherdoc	*heredoc;
 
 	heredoc = malloc(sizeof(t_lstherdoc));
+	if(!heredoc)
+		return (NULL);
 	heredoc->path = path;
 	heredoc->flag = 0;
 	heredoc->next = NULL;

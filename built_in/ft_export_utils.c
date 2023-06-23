@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshail <lshail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:17:57 by lshail            #+#    #+#             */
-/*   Updated: 2023/06/22 19:17:58 by lshail           ###   ########.fr       */
+/*   Updated: 2023/06/23 13:44:12 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	**key_to_array(t_env *env)
 		temp = temp->next;
 	}
 	keys = malloc(sizeof(char *) * (count + 1));
+	if(!keys)
+		return (NULL);
 	temp = env;
 	i = 0;
 	while (temp != NULL)

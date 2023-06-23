@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:17:42 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/22 19:17:43 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:36:19 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ char	**get_args(t_lsttoken *cmds)
 	i = 0;
 	len = ft_cmd_size(cmds) + 1;
 	args = (char **)malloc(sizeof(char *) * len);
+	if(!args)
+		return (NULL);
 	while (i < len - 1)
 	{
 		if (cmds->token == tk_wt_s)

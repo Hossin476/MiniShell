@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_to_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshail <lshail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:18:48 by lshail            #+#    #+#             */
-/*   Updated: 2023/06/22 19:18:49 by lshail           ###   ########.fr       */
+/*   Updated: 2023/06/23 13:35:42 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	**env_to_array(t_env *env)
 		cur_node = cur_node->next;
 	}
 	env_arr = malloc(sizeof(char *) * (count + 1));
+	if(!env_arr)
+		return (NULL);
 	cur_node = env;
 	while (i < count)
 	{

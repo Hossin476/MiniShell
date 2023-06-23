@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshail <lshail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:19:01 by lshail            #+#    #+#             */
-/*   Updated: 2023/06/22 19:19:02 by lshail           ###   ########.fr       */
+/*   Updated: 2023/06/23 13:56:09 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	init_val(t_regex *reg, char *word);
 int		ft_exportable(char **key);
 int		ft_check_chars(char *line);
 int		ft_get_char(char *str, char c);
-void	ft_clearnode(t_env *env, char *key);
+void	ft_clearnode(t_env **env, char *key);
 t_env	*get_first_node(t_env *env);
 t_env	*get_env_node(t_env *env, char *key);
 t_env	*ft_envnew(void);
