@@ -1,6 +1,6 @@
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
 NAME	=	minishell
 
 SRC= built_in/ft_cd.c \
@@ -48,7 +48,10 @@ SRC= built_in/ft_cd.c \
 
 LIBFT=./libft/libft.a
 OBJ=$(SRC:.c=.o)
-
+INCLUDE = ./include/minishell.h ./include/builtin.h ./include/cmdexe.h \
+			./include/cmdlist.h ./include/concater.h ./include/env.h \
+			 ./include/executer.h ./include/expander.h \
+			./include/here_doc.h ./include/tokenizer.h \
 
 RL_PATH=$(shell brew --prefix readline)
 
@@ -62,7 +65,7 @@ $(NAME)	:	$(OBJ) $(LIBFT)
 $(LIBFT): ./libft/libft.h
 	$(MAKE) all -C ./libft
 
-%.o	:	%.c ./include/minishell.h
+%.o	:	%.c $(INCLUDE)
 	$(CC)  $(CFLAGS) -I $(RL_PATH)/include  -c -o $@ $<
 
 clean	:

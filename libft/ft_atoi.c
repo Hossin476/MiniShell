@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:11:16 by ykhourba          #+#    #+#             */
-/*   Updated: 2022/10/26 16:16:14 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:26:48 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ int	ft_atoi(const char *str)
 {
 	int	signe;
 	int	res;
-
+	    
+	if(!str)
+		return(0);
 	if (checkiflong((char *)str) == 1)
 		return (check_return((char *)str));
 	signe = 1;

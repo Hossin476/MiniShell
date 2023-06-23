@@ -34,13 +34,21 @@ t_env	*get_first_node(t_env *env)
 	return (env);
 }
 
-void	ft_clearnode(t_env *env, char *key)
+void	ft_clearnode(t_env **env, char *key)
 {
 	t_env	*node;
 
-	node = get_first_node(env);
+	node = get_first_node(*env);
 	while (node && ft_compare(node->key, key))
 		node = node->next;
+	if(node == *env)
+	{
+		free(node->value);
+		free(node->key);
+		free(node);	
+		*env = NULL;
+		return;
+	}
 	if (!node)
 		return ;
 	if (node->prev)
@@ -72,7 +80,7 @@ int	ft_unset_command(char **args, t_env **env)
 		else
 		{
 			key = args[i];
-			ft_clearnode(*env, key);
+			ft_clearnode(env, key);
 			i++;
 		}
 	}
