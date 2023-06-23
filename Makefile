@@ -46,11 +46,32 @@ SRC= built_in/ft_cd.c \
 	manage_main/main_utils2.c\
 	manage_main/list_to_array.c\
 
-LIBFT=./libft/libft.a
+HELPERS = 	./helpers/ft_atoi.c \
+			./helpers/ft_isalnum.c \
+			./helpers/ft_isalpha.c \
+			./helpers/ft_isdigit.c \
+			./helpers/ft_itoa.c \
+			./helpers/ft_memcpy.c \
+			./helpers/ft_putstr_fd.c \
+			./helpers/ft_putchar_fd.c \
+			./helpers/ft_putendl_fd.c \
+			./helpers/ft_split.c \
+			./helpers/ft_strchr.c \
+			./helpers/ft_strcmp.c \
+			./helpers/ft_strdup.c \
+			./helpers/ft_strjoin.c \
+			./helpers/ft_strlen.c \
+			./helpers/ft_strncmp.c \
+			./helpers/ft_strnstr.c \
+			./helpers/ft_strrchr.c \
+			./helpers/ft_strtrim.c \
+			./helpers/ft_substr.c \
+
 OBJ=$(SRC:.c=.o)
+OBG_H = $(HELPERS:.c=.o)
 INCLUDE = ./include/minishell.h ./include/builtin.h ./include/cmdexe.h \
 			./include/cmdlist.h ./include/concater.h ./include/env.h \
-			 ./include/executer.h ./include/expander.h \
+			 ./include/executer.h ./include/expander.h ./include/helpers \
 			./include/here_doc.h ./include/tokenizer.h \
 
 RL_PATH=$(shell brew --prefix readline)
@@ -59,21 +80,18 @@ LIB = -L $(RL_PATH)/lib -lreadline
 
 all	:	$(NAME)
 
-$(NAME)	:	$(OBJ) $(LIBFT)
-	${CC} ${CFLAGS} $(LIB) ${LIBFT} ${OBJ} -o ${NAME} 
+$(NAME)	:	$(OBJ) $(OBG_H)
+	${CC} ${CFLAGS} $(LIB) ${OBG_H} ${OBJ} -o ${NAME} 
 
-$(LIBFT): ./libft/libft.h
-	$(MAKE) all -C ./libft
 
 %.o	:	%.c $(INCLUDE)
 	$(CC)  $(CFLAGS) -I $(RL_PATH)/include  -c -o $@ $<
 
-clean	:
-	$(MAKE) clean -C ./libft 
-	rm -f $(OBJ) 
+clean	: 
+	rm -f $(OBJ) $(OBG_H)
 
 fclean	:	clean 
-	rm -f $(NAME) $(LIBFT)
+	rm -f $(NAME)
 
 re	: clean all
 
