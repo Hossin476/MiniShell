@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:20:31 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/22 19:20:32 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/23 22:21:28 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_run_cmd(t_cmdexe *cmd, char **args, t_env *env)
 	else
 		path = check_path(*args, env);
 	if (execve(path, args, en) == -1)
-		return (ft_putstr_fd("Error: command not found\n", 2), exit(1));
+		return (ft_putstr_fd("Error: failes to execute\n", 2), exit(1));
 }
 
 int	ft_execute(t_cmdexe *cmd, t_fd fd, t_env *env, t_lstpipe *pip)

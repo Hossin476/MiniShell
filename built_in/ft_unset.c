@@ -38,23 +38,19 @@ void	ft_clearnode(t_env **env, char *key)
 {
 	t_env	*node;
 
-	node = get_first_node(*env);
+	if(!env || !*env)
+		return;
+	node = *env;
 	while (node && ft_compare(node->key, key))
 		node = node->next;
-	if(node == *env)
-	{
-		free(node->value);
-		free(node->key);
-		free(node);	
-		*env = NULL;
-		return;
-	}
 	if (!node)
 		return ;
 	if (node->prev)
 		node->prev->next = node->next;
 	if (node->next)
 		node->next->prev = node->prev;
+	if(node == *env)
+		*env = (*env)->next;
 	free(node->value);
 	free(node->key);
 	free(node);
