@@ -69,10 +69,13 @@ HELPERS = 	./helpers/ft_atoi.c \
 
 OBJ=$(SRC:.c=.o)
 OBG_H = $(HELPERS:.c=.o)
-INCLUDE = ./include/minishell.h ./include/builtin.h ./include/cmdexe.h \
-			./include/cmdlist.h ./include/concater.h ./include/env.h \
-			 ./include/executer.h ./include/expander.h ./include/helpers \
-			./include/here_doc.h ./include/tokenizer.h \
+INCLUDE_DIR = include
+ABS_PATH = 	$(INCLUDE_DIR)/minishell.h $(INCLUDE_DIR)/builtin.h \
+			$(INCLUDE_DIR)/cmdexe.h $(INCLUDE_DIR)/cmdlist.h \
+			$(INCLUDE_DIR)/concater.h $(INCLUDE_DIR)/env.h \
+			$(INCLUDE_DIR)/executer.h $(INCLUDE_DIR)/expander.h\
+			$(INCLUDE_DIR)/helpers.h $(INCLUDE_DIR)/here_doc.h\
+			$(INCLUDE_DIR)/tokenizer.h
 
 RL_PATH=$(shell brew --prefix readline)
 
@@ -84,8 +87,8 @@ $(NAME)	:	$(OBJ) $(OBG_H)
 	${CC} ${CFLAGS} $(LIB) ${OBG_H} ${OBJ} -o ${NAME} 
 
 
-%.o	:	%.c $(INCLUDE)
-	$(CC)  $(CFLAGS) -I $(RL_PATH)/include  -c -o $@ $<
+%.o	:	%.c  $(ABS_PATH)
+	$(CC)  $(CFLAGS) -I $(INCLUDE_DIR) -I $(RL_PATH)/include -c $< -o $@
 
 clean	: 
 	rm -f $(OBJ) $(OBG_H)

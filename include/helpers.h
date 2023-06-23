@@ -6,15 +6,15 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:39:34 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/23 19:06:23 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/23 19:41:53 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef HELPERS_H
+# define HELPERS_H
 
-# include "../include/minishell.h"
-
+# include "minishell.h"
+   
 int		ft_atoi(const char *str);
 int		ft_isalnum(int arg);
 int		ft_isalpha(int argument);

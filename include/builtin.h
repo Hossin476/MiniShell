@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:19:01 by lshail            #+#    #+#             */
-/*   Updated: 2023/06/23 13:56:09 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/23 19:28:33 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define BUILTIN_H
 
 # include "minishell.h"
-# include "env.h"
 
 typedef struct s_export_command_vars
 {
