@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:24:07 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/22 19:26:47 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/23 19:16:30 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/types.h>
 # include <limits.h>
 # include <sys/stat.h>
-# include "../libft/libft.h"
+# include "helpers.h"
 # include "env.h"
 # include "builtin.h"
 # include "tokenizer.h"
@@ -52,7 +52,7 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <unistd.h>
-
+   
 typedef struct s_globals
 {
 	int	g_exit_status;

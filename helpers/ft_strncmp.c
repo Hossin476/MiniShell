@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   concater.h                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 19:23:48 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/23 19:31:19 by ykhourba         ###   ########.fr       */
+/*   Created: 2022/10/07 18:43:14 by ykhourba          #+#    #+#             */
+/*   Updated: 2023/06/23 18:55:08 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONCATER_H
-# define CONCATER_H
+# include "../include/minishell.h"
 
-# include "minishell.h"
-  
-t_cmdlst	*ft_concater(t_cmdlst *head);
-void		ft_free_garbage(t_lsttoken *item, char *str1, char *str2);
-int			ft_link_nodes(t_lsttoken *item);
-void		concate_cmd(t_lsttoken **head);
-void		ft_concate_redir(t_lsttoken **head);
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-#endif
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (*str1 && *str2 && n-- > 1)
+	{
+		if (*str1 != *str2)
+			return (*str1 - *str2);
+		str1++;
+		str2++;
+	}
+	return (*str1 - *str2);
+}

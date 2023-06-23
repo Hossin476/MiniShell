@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   concater.h                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 19:23:48 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/23 19:31:19 by ykhourba         ###   ########.fr       */
+/*   Created: 2022/10/08 14:13:08 by ykhourba          #+#    #+#             */
+/*   Updated: 2023/06/23 18:55:01 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONCATER_H
-# define CONCATER_H
+# include "../include/minishell.h"
 
-# include "minishell.h"
-  
-t_cmdlst	*ft_concater(t_cmdlst *head);
-void		ft_free_garbage(t_lsttoken *item, char *str1, char *str2);
-int			ft_link_nodes(t_lsttoken *item);
-void		concate_cmd(t_lsttoken **head);
-void		ft_concate_redir(t_lsttoken **head);
+char	*ft_strdup(const char *s1)
+{
+	int		len;
+	char	*d1;
 
-#endif
+	if (!s1)
+		return (NULL);
+	len = ft_strlen(s1);
+	d1 = (char *)malloc(len + 1);
+	if (!d1)
+		return (NULL);
+	while (*s1)
+	{
+		*d1 = *s1;
+		d1++;
+		s1++;
+	}
+	*d1 = '\0';
+	return (d1 - len);
+}

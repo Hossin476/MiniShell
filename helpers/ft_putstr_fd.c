@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   concater.h                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 19:23:48 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/23 19:31:19 by ykhourba         ###   ########.fr       */
+/*   Created: 2022/10/10 17:31:39 by ykhourba          #+#    #+#             */
+/*   Updated: 2023/06/23 18:54:49 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONCATER_H
-# define CONCATER_H
+# include "../include/minishell.h"
 
-# include "minishell.h"
-  
-t_cmdlst	*ft_concater(t_cmdlst *head);
-void		ft_free_garbage(t_lsttoken *item, char *str1, char *str2);
-int			ft_link_nodes(t_lsttoken *item);
-void		concate_cmd(t_lsttoken **head);
-void		ft_concate_redir(t_lsttoken **head);
-
-#endif
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
+}
