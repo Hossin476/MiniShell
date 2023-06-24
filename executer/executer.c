@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:18:30 by lshail            #+#    #+#             */
-/*   Updated: 2023/06/23 13:21:10 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/23 22:22:35 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char	*check_path(char *args, t_env *env)
 
 	if (!ft_strcmp(args, "."))
 		return (ft_putstr_fd("filename argument required\n", 2), exit(2), NULL);
+	if (!ft_strcmp(args, ".."))
+		return (ft_putstr_fd("Error: command not found\n", 2), exit(127), NULL);
 	path = get_path(args, env);
 	if (!path || !ft_strcmp(args, ""))
 		return (ft_putstr_fd("Error: command not found\n", 2), exit(127), NULL);
