@@ -6,11 +6,11 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:55:03 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/23 18:54:42 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:23:25 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/minishell.h"
+#include "../include/minishell.h"
 
 static long	trns_num(int nbr)
 {

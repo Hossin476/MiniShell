@@ -6,11 +6,11 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 14:16:21 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/23 18:54:57 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:23:42 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/minishell.h"
+#include "../include/minishell.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

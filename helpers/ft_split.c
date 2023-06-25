@@ -6,11 +6,11 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 17:42:12 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/23 19:07:02 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:23:37 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/minishell.h"
+#include "../include/minishell.h"
 
 static int	word_counter(char *s, char *str)
 {

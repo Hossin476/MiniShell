@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:17:57 by lshail            #+#    #+#             */
-/*   Updated: 2023/06/23 13:44:12 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:21:20 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**key_to_array(t_env *env)
 		temp = temp->next;
 	}
 	keys = malloc(sizeof(char *) * (count + 1));
-	if(!keys)
+	if (!keys)
 		return (NULL);
 	temp = env;
 	i = 0;

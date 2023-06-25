@@ -6,12 +6,11 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 19:03:34 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/23 19:03:43 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:25:50 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/minishell.h"
-
+#include "../include/minishell.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

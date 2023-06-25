@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:23:58 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/23 19:29:47 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:24:53 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define EXPANDER_H
 
 # include "minishell.h"
-  
+
 t_cmdlst	*expander(t_cmdlst *head, t_env *env);
 void		ft_expand_redir(t_lsttoken *item, t_env *env, t_lsttoken **head);
 void		ft_expand_cmd(t_lsttoken *item, t_env *env, t_lsttoken **head);

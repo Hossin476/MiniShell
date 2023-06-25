@@ -6,11 +6,11 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 10:43:55 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/23 18:55:15 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:23:53 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/minishell.h"
+#include "../include/minishell.h"
 
 char	*ft_strrchr(const char *str, int c)
 {
