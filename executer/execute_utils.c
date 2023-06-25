@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshail <lshail@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:20:41 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/22 19:20:42 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/23 19:41:55 by lshail           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_lstpipe	*ft_lstnew_pip(int fd)
 	t_lstpipe	*item;
 
 	item = malloc(sizeof(t_lstpipe));
+	if (!item)
+		return (NULL);
 	item->fd = fd;
 	item->next = NULL;
 	return (item);
