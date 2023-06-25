@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:24:07 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/23 19:16:30 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:25:27 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <unistd.h>
-   
+
 typedef struct s_globals
 {
 	int	g_exit_status;

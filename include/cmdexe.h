@@ -6,7 +6,7 @@
 /*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:23:40 by ykhourba          #+#    #+#             */
-/*   Updated: 2023/06/24 00:44:27 by ykhourba         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:24:31 by ykhourba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int			open_infiles(t_lsttoken *item);
 int			open_outfiles(t_lsttoken *head);
 t_cmdexe	*creat_cmdexe(t_cmdlst *cmds);
 int			get_fd(int fd, t_lsttoken *item);
-void ft_check_error_redir(t_cmdexe *item);
+void		ft_check_error_redir(t_cmdexe *item);
 
 #endif
