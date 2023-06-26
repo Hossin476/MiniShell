@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmdexe_utils1.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 19:17:46 by ykhourba          #+#    #+#             */
+/*   Updated: 2023/06/25 12:30:35 by ykhourba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 int	not_file_name(t_lsttoken *item)
 {
+	if (!item)
+		return (1);
 	if (item->token == tk_l_dir || item->token == tk_r_dir
 		|| item->token == tk_r_her || item->token == tk_l_her
 		|| item->token == tk_exp || item->token == tk_joined)
@@ -15,67 +29,47 @@ int	open_infiles(t_lsttoken *item)
 
 	fd = 0;
 	if (!item)
-		return (0);
-	while (item)
+		return (-1);
+	if (not_file_name(item))
+		return (fd = -1);
+	else
 	{
-		if ((item->token & (tk_l_dir | tk_l_her)) && item->next)
-		{
-			if (not_file_name(item->next))
-				return (fd = -1);
-			else
-			{
-				if (fd != 0)
-					close(fd);
-				fd = open(item->next->str, O_RDWR, 0644);
-				if (fd < 0)
-					return (-2);
-			}
-		}
-		else if (item->token == tk_l_dir && !item->next)
-			fd = -1;
-		item = item->next;
+		if (fd != 0)
+			close(fd);
+		fd = open(item->str, O_RDWR, 0644);
+		if (fd < 0)
+			return (-2);
 	}
 	return (fd);
 }
 
-int	ft_open_outfile(t_lsttoken *item)
+int	get_fd(int fd, t_lsttoken *item)
 {
-	int	fd;
-
-	fd = 1;
-	while (item)
-	{
-		if ((item->token & (tk_r_dir | tk_r_her)) && item->next)
-		{
-			if (not_file_name(item->next))
-				return (-1);
-			else
-			{
-				if (fd != 1)
-					close(fd);
-				if (item->token == tk_r_her)
-					fd = open(item->next->str, O_CREAT | O_APPEND | O_RDWR,
-							0644);
-				else
-					fd = open(item->next->str, O_CREAT | O_RDWR | O_TRUNC,
-							0644);
-				if (fd < 0)
-					return (-2);
-			}
-		}
-		else if ((item->token & (tk_r_dir | tk_r_her)) && !item->next)
-			fd = -1;
-		item = item->next;
-	}
+	if (fd != 1)
+		close(fd);
+	if (item->token == tk_r_her)
+		fd = open(item->str, O_CREAT | O_APPEND | O_RDWR,
+				0644);
+	else
+		fd = open(item->str, O_CREAT | O_RDWR | O_TRUNC,
+				0644);
 	return (fd);
 }
 
-int	open_outfiles(t_lsttoken *head)
+int	open_outfiles(t_lsttoken *item)
 {
 	int	fd;
 
 	fd = 1;
-	if (!head)
-		return (fd);
-	return (ft_open_outfile(head));
+	if (!item)
+		return (-1);
+	if (not_file_name(item))
+		return (-1);
+	else
+	{
+		fd = get_fd(fd, item);
+		if (fd < 0)
+			return (-2);
+	}
+	return (fd);
 }

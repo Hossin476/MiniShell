@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 19:19:01 by lshail            #+#    #+#             */
+/*   Updated: 2023/06/23 19:28:33 by ykhourba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef BUILTIN_H
 # define BUILTIN_H
 
 # include "minishell.h"
-# include "env.h"
 
 typedef struct s_export_command_vars
 {
@@ -44,7 +55,7 @@ void	init_val(t_regex *reg, char *word);
 int		ft_exportable(char **key);
 int		ft_check_chars(char *line);
 int		ft_get_char(char *str, char c);
-void	ft_clearnode(t_env *env, char *key);
+void	ft_clearnode(t_env **env, char *key);
 t_env	*get_first_node(t_env *env);
 t_env	*get_env_node(t_env *env, char *key);
 t_env	*ft_envnew(void);

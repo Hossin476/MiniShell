@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 19:24:07 by ykhourba          #+#    #+#             */
+/*   Updated: 2023/06/25 12:25:27 by ykhourba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -13,7 +25,7 @@
 # include <sys/types.h>
 # include <limits.h>
 # include <sys/stat.h>
-# include "../libft/libft.h"
+# include "helpers.h"
 # include "env.h"
 # include "builtin.h"
 # include "tokenizer.h"

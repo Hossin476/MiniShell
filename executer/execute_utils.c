@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lshail <lshail@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 19:20:41 by ykhourba          #+#    #+#             */
+/*   Updated: 2023/06/23 19:41:55 by lshail           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	ft_lstsize_cmd(t_cmdexe *cmd)
@@ -31,6 +43,8 @@ t_lstpipe	*ft_lstnew_pip(int fd)
 	t_lstpipe	*item;
 
 	item = malloc(sizeof(t_lstpipe));
+	if (!item)
+		return (NULL);
 	item->fd = fd;
 	item->next = NULL;
 	return (item);

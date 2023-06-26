@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 19:18:24 by ykhourba          #+#    #+#             */
+/*   Updated: 2023/06/25 12:20:49 by ykhourba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 int	ft_strcmp_her(char *s1, char *s2, size_t n)
@@ -15,6 +27,8 @@ t_lstherdoc	*ft_newherdoc(char *path)
 	t_lstherdoc	*heredoc;
 
 	heredoc = malloc(sizeof(t_lstherdoc));
+	if (!heredoc)
+		return (NULL);
 	heredoc->path = path;
 	heredoc->flag = 0;
 	heredoc->next = NULL;

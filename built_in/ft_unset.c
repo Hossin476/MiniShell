@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lshail <lshail@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 19:18:15 by lshail            #+#    #+#             */
+/*   Updated: 2023/06/22 19:18:15 by lshail           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	ft_check_args(char *env_name)
@@ -22,11 +34,13 @@ t_env	*get_first_node(t_env *env)
 	return (env);
 }
 
-void	ft_clearnode(t_env *env, char *key)
+void	ft_clearnode(t_env **env, char *key)
 {
 	t_env	*node;
 
-	node = get_first_node(env);
+	if (!env || !*env)
+		return ;
+	node = *env;
 	while (node && ft_compare(node->key, key))
 		node = node->next;
 	if (!node)
@@ -35,6 +49,8 @@ void	ft_clearnode(t_env *env, char *key)
 		node->prev->next = node->next;
 	if (node->next)
 		node->next->prev = node->prev;
+	if (node == *env)
+		*env = (*env)->next;
 	free(node->value);
 	free(node->key);
 	free(node);
@@ -60,7 +76,7 @@ int	ft_unset_command(char **args, t_env **env)
 		else
 		{
 			key = args[i];
-			ft_clearnode(*env, key);
+			ft_clearnode(env, key);
 			i++;
 		}
 	}

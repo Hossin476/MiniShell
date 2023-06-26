@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmdexe_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykhourba <ykhourba@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 19:17:42 by ykhourba          #+#    #+#             */
+/*   Updated: 2023/06/25 12:28:51 by ykhourba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 t_cmdexe	*cmdexe_new(void)
@@ -66,6 +78,8 @@ char	**get_args(t_lsttoken *cmds)
 	i = 0;
 	len = ft_cmd_size(cmds) + 1;
 	args = (char **)malloc(sizeof(char *) * len);
+	if (!args)
+		return (NULL);
 	while (i < len - 1)
 	{
 		if (cmds->token == tk_wt_s)
